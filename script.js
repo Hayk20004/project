@@ -14,14 +14,14 @@ var matrix = [
     // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
     // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
     // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-]; 
-  
-    var n = 20
-    var elemm =[0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3,4,4,5,5,5,5,]
-for(y =0;y<n;y++){
+];
+
+var n = 20
+var elemm = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5, 5, 5,]
+for (y = 0; y < n; y++) {
     matrix.push([])
-    for(x=0;x<n;x++){
-        var r=Math.floor(Math.random()*elemm.length);
+    for (x = 0; x < n; x++) {
+        var r = Math.floor(Math.random() * elemm.length);
         matrix[y].push(elemm[r]);
     }
 }
@@ -48,31 +48,31 @@ for (var y = 0; y < matrix.length; y++) {
             var xot1 = new Grass(x, y, 1);
             grassArr.push(xot1);
         }
-            else if (matrix[y][x] == 2) {
+        else if (matrix[y][x] == 2) {
 
-                var xotaker= new Xotaker(x, y, 1);
-                xotakerArr.push(xotaker);
-            }
-            else if (matrix[y][x] == 3) {
-
-                var gishatich= new Gishatich(x, y, 1);
-                gishatichArr.push(gishatich);
-            }
-            else if (matrix[y][x] == 4) {
-
-                var vorsord= new Vorsord(x, y, 1);
-                
-                vorsordArr.push(vorsord);
-            }
-            else if (matrix[y][x] == 5) {
-
-                var gazan= new Gazan(x, y, 1);
-                
-                gazanArr.push(gazan);
-            }
-          
+            var xotaker = new Xotaker(x, y, 1);
+            xotakerArr.push(xotaker);
         }
+        else if (matrix[y][x] == 3) {
+
+            var gishatich = new Gishatich(x, y, 1);
+            gishatichArr.push(gishatich);
+        }
+        else if (matrix[y][x] == 4) {
+
+            var vorsord = new Vorsord(x, y, 1);
+
+            vorsordArr.push(vorsord);
+        }
+        else if (matrix[y][x] == 5) {
+
+            var gazan = new Gazan(x, y, 1);
+
+            gazanArr.push(gazan);
+        }
+
     }
+}
 
 console.log(grassArr);
 console.log(xotakerArr);
@@ -87,9 +87,9 @@ var side = 50;
 
 
 function setup() {
- 
 
-    
+
+
 
     frameRate(5);
     createCanvas(matrix[0].length * side, matrix.length * side);
@@ -120,9 +120,9 @@ function draw() {
             else if (matrix[y][x] == 5) {
                 fill("purple");
             }
-            
-            
-           
+
+
+
             rect(x * side, y * side, side, side);
 
 
@@ -131,36 +131,36 @@ function draw() {
 
         }
     }
-for (var i in grassArr) {
+    for (var i in grassArr) {
 
         grassArr[i].mult();
-   }
-   for (var i in xotakerArr) {
-        xotakerArr[i].eat();
-     xotakerArr[i].mult();
-         xotakerArr[i].move();
-       xotakerArr[i].die();
     }
-  for (var i in gishatichArr) {
-       gishatichArr[i].eat();
-       gishatichArr[i].mult();
+    for (var i in xotakerArr) {
+        xotakerArr[i].eat();
+        xotakerArr[i].mult();
+        xotakerArr[i].move();
+        xotakerArr[i].die();
+    }
+    for (var i in gishatichArr) {
+        gishatichArr[i].eat();
+        gishatichArr[i].mult();
         gishatichArr[i].move();
         gishatichArr[i].die();
-}
-for (var i in vorsordArr ) {
-   
-    vorsordArr[i].eat();
-   vorsordArr[i].mult();
-    vorsordArr[i].move();
-    vorsordArr[i].die();
-}
-for (var i in gazanArr ) {
-   
-    gazanArr[i].eat();
-    gazanArr[i].mult();
-    gazanArr[i].move();
-   gazanArr[i].die();
-}
+    }
+    for (var i in vorsordArr) {
+
+        vorsordArr[i].eat();
+        vorsordArr[i].mult();
+        vorsordArr[i].move();
+        vorsordArr[i].die();
+    }
+    for (var i in gazanArr) {
+
+        gazanArr[i].eat();
+        gazanArr[i].mult();
+        gazanArr[i].move();
+        gazanArr[i].die();
+    }
 
 }
 
