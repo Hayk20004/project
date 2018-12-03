@@ -1,5 +1,5 @@
 class Gishatich extends LivingCreature {
-    constructor(x, y, index){
+    constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;
     }
@@ -25,10 +25,10 @@ class Gishatich extends LivingCreature {
 
     chooseCell(character) {
         this.getNewCoordinates();
-       return super.chooseCell(character);
-   }
+        return super.chooseCell(character);
+    }
 
-    
+
 
 
     mult() {

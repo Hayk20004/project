@@ -1,5 +1,5 @@
 class Xotaker extends LivingCreature {
-    constructor(x, y, index){
+    constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;
     }
@@ -21,7 +21,7 @@ class Xotaker extends LivingCreature {
     chooseCell(character) {
         this.getNewDirections()
         return super.chooseCell(character);
-        
+
 
     }
 
