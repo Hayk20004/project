@@ -24,7 +24,7 @@ class Gishatich extends LivingCreature {
 
 
     chooseCell(character) {
-        this.getNewCoordinates();
+        this.getNewDirections();
         return super.chooseCell(character);
     }
 
