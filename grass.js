@@ -1,8 +1,9 @@
-class Grass  extends LivingCreature{
+var LivingCreature =require("/.LivingCreature.js")
+module.exports = class Grass  extends LivingCreature{
 
     mult() {
 
-        var empty = random(this.chooseCell(0));
+        var empty =  (this.chooseCell(0));
         this.multiply++
         if (empty && this.multiply > 0) {
             var newX = empty[0];
@@ -13,4 +14,5 @@ class Grass  extends LivingCreature{
             grassArr.push(gr);
         }
     }
+    
 }

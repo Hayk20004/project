@@ -1,3 +1,4 @@
+var LivingCreature =require("/.LivingCreature.js")
 class Vorsord extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);

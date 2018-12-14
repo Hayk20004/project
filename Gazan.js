@@ -1,4 +1,5 @@
-class Gazan extends LivingCreature{
+var LivingCreature =require("/.LivingCreature.js")
+module.exports =class Gazan extends LivingCreature{
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 8;
