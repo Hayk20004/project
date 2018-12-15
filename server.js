@@ -1,5 +1,5 @@
 
-
+var randomItem = matrix[Math.floor(Math.random()*matrix.length)];
 var matrix = [
     // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
     // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,3, 0, 0, 0, 0, 0, 0, 0, 0,],

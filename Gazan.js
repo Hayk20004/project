@@ -37,7 +37,7 @@ module.exports =class Gazan extends LivingCreature{
 
     mult() {
 
-        var empty = random(this.chooseCell(0));
+        var empty = randomItem(this.chooseCell(0));
 
         if (empty && this.energy > 15) {
             var newX = empty[0];
@@ -52,7 +52,7 @@ module.exports =class Gazan extends LivingCreature{
 
     move() {
 
-        var empty = random(this.chooseCell(0));
+        var empty = randomItem(this.chooseCell(0));
         this.energy -= 2
         if (empty) {
             var newX = empty[0];
@@ -71,10 +71,10 @@ module.exports =class Gazan extends LivingCreature{
 
 
     eat() {
-        var food = random(this.chooseCell(2));
-        var food1 = random(this.chooseCell(3));
-        var food2 = random(this.chooseCell(4));
-        var food3 = random(this.chooseCell(1));
+        var food = randomItem(this.chooseCell(2));
+        var food1 = randomItem(this.chooseCell(3));
+        var food2 = randomItem(this.chooseCell(4));
+        var food3 = randomItem(this.chooseCell(1));
         if (food3) {
             var newX = food3[0]
             var newY = food3[1]
@@ -172,3 +172,4 @@ module.exports =class Gazan extends LivingCreature{
 
 
 }
+var randomItem = matrix[Math.floor(Math.random()*matrix.length)];

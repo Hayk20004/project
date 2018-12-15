@@ -49,7 +49,7 @@ class Gishatich extends LivingCreature {
 
     move() {
 
-        var empty = random(this.chooseCell(0));
+        var empty = randomItem(this.chooseCell(0));
         this.energy -= 2
         if (empty) {
             var newX = empty[0];
@@ -68,7 +68,7 @@ class Gishatich extends LivingCreature {
 
 
     eat() {
-        var food = random(this.chooseCell(2));
+        var food = randomItem(this.chooseCell(2));
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -106,3 +106,4 @@ class Gishatich extends LivingCreature {
 
 
 }
+var randomItem = matrix[Math.floor(Math.random()*matrix.length)];
