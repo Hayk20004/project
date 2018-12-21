@@ -1,4 +1,4 @@
-var LivingCreature =require("/.LivingCreature.js")
+var LivingCreature =require("./LivingCreature.js")
 module.exports =class Gazan extends LivingCreature{
     constructor(x, y, index){
         super(x, y, index);
@@ -37,11 +37,12 @@ module.exports =class Gazan extends LivingCreature{
 
     mult() {
 
-        var empty = randomItem(this.chooseCell(0));
+      var arr = this.chooseCell(0);
+      var newCell = arr[Math.floor(Math.random() * arr.length)];
 
-        if (empty && this.energy > 15) {
-            var newX = empty[0];
-            var newY = empty[1];
+        if (newCell && this.energy > 15) {
+            var newX = newCell[0];
+            var newY = newCell[1];
 
             matrix[newY][newX] = 5;
             var gz = new Gazan(newX, newY, 1)
@@ -52,11 +53,12 @@ module.exports =class Gazan extends LivingCreature{
 
     move() {
 
-        var empty = randomItem(this.chooseCell(0));
+        var arr = this.chooseCell(0);
+        var newCell = arr[Math.floor(Math.random() * arr.length)];
         this.energy -= 2
-        if (empty) {
-            var newX = empty[0];
-            var newY = empty[1];
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
 
             matrix[newY][newX] = 5;
             matrix[this.y][this.x] = 0;
@@ -71,10 +73,21 @@ module.exports =class Gazan extends LivingCreature{
 
 
     eat() {
-        var food = randomItem(this.chooseCell(2));
-        var food1 = randomItem(this.chooseCell(3));
-        var food2 = randomItem(this.chooseCell(4));
-        var food3 = randomItem(this.chooseCell(1));
+        var arr = this.chooseCell(2);
+        var food = arr[Math.floor(Math.random() * arr.length)];
+        var arr = this.chooseCell(3);
+        var food1 = arr[Math.floor(Math.random() * arr.length)];
+        var arr = this.chooseCell(4);
+        var food2 = arr[Math.floor(Math.random() * arr.length)];
+        var arr = this.chooseCell(1);
+        var food3 = arr[Math.floor(Math.random() * arr.length)];
+        
+        
+        
+
+
+
+        
         if (food3) {
             var newX = food3[0]
             var newY = food3[1]
@@ -172,4 +185,4 @@ module.exports =class Gazan extends LivingCreature{
 
 
 }
-var randomItem = matrix[Math.floor(Math.random()*matrix.length)];
+ 

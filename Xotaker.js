@@ -1,4 +1,4 @@
-var LivingCreature =require("/.LivingCreature.js")
+var LivingCreature =require("./LivingCreature.js")
 module.exports =class Xotaker extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
@@ -27,10 +27,11 @@ module.exports =class Xotaker extends LivingCreature {
     }
 
     mult() {
-        var empty = randomItem(this.chooseCell(0))
-        if (empty && this.energy > 10) {
-            var newX = empty[0]
-            var newY = empty[1]
+        var arr = this.chooseCell(0);
+        var newCell = arr[Math.floor(Math.random() * arr.length)];
+        if (newCell && this.energy > 10) {
+            var newX = newCell[0]
+            var newY = newCell[1]
             matrix[newY][newX] = 2
             var xt = new Xotaker(newX, newY)
             xotakerArr.push(xt)
@@ -38,11 +39,12 @@ module.exports =class Xotaker extends LivingCreature {
     }
 
     move() {
-        var empty = randomItem(this.chooseCell(0))
+        var arr = this.chooseCell(0);
+        var newCell = arr[Math.floor(Math.random() * arr.length)];
         this.energy--;
-        if (empty) {
-            var newX = empty[0]
-            var newY = empty[1]
+        if (newCell) {
+            var newX = newCell[0]
+            var newY = newCell[1]
             matrix[newY][newX] = 2
             matrix[this.y][this.x] = 0
 
@@ -52,7 +54,8 @@ module.exports =class Xotaker extends LivingCreature {
     }
 
     eat() {
-        var food = randomItem(this.chooseCell(1))
+        var arr = this.chooseCell(0);
+        var food = arr[Math.floor(Math.random() * arr.length)];
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -82,4 +85,3 @@ module.exports =class Xotaker extends LivingCreature {
         }
     }
 }
-var randomItem = matrix[Math.floor(Math.random()*matrix.length)];

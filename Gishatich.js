@@ -1,5 +1,5 @@
-var LivingCreature =require("/.LivingCreature.js")
-class Gishatich extends LivingCreature {
+var LivingCreature =require("./LivingCreature.js")
+module.exports = class Gishatich extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;
@@ -34,11 +34,12 @@ class Gishatich extends LivingCreature {
 
     mult() {
 
-        var empty = random(this.chooseCell(0));
+        var arr = this.chooseCell(0);
+        var newCell = arr[Math.floor(Math.random() * arr.length)];
 
-        if (empty && this.energy > 15) {
-            var newX = empty[0];
-            var newY = empty[1];
+        if (newCell && this.energy > 15) {
+            var newX = newCell[0];
+            var newY = newCell[1];
 
             matrix[newY][newX] = 3;
             var gsh = new Gishatich(newX, newY, 1)
@@ -49,11 +50,12 @@ class Gishatich extends LivingCreature {
 
     move() {
 
-        var empty = randomItem(this.chooseCell(0));
+        var arr = this.chooseCell(0);
+        var newCell = arr[Math.floor(Math.random() * arr.length)];
         this.energy -= 2
-        if (empty) {
-            var newX = empty[0];
-            var newY = empty[1];
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
 
             matrix[newY][newX] = 3;
             matrix[this.y][this.x] = 0;
@@ -68,7 +70,8 @@ class Gishatich extends LivingCreature {
 
 
     eat() {
-        var food = randomItem(this.chooseCell(2));
+        var arr = this.chooseCell(2);
+        var food = arr[Math.floor(Math.random() * arr.length)];
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -106,4 +109,3 @@ class Gishatich extends LivingCreature {
 
 
 }
-var randomItem = matrix[Math.floor(Math.random()*matrix.length)];

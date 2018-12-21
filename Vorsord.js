@@ -1,5 +1,5 @@
-var LivingCreature =require("/.LivingCreature.js")
-class Vorsord extends LivingCreature {
+var LivingCreature =require("./LivingCreature.js")
+module.exports =class Vorsord extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 8;
@@ -34,11 +34,12 @@ class Vorsord extends LivingCreature {
 
     mult() {
 
-        var empty = randomItem(this.chooseCell(0));
+        var arr = this.chooseCell(0);
+        var newCell = arr[Math.floor(Math.random() * arr.length)];
 
-        if (empty && this.energy > 10) {
-            var newX = empty[0];
-            var newY = empty[1];
+        if (newCell && this.energy > 10) {
+            var newX = newCell[0];
+            var newY = newCell[1];
 
             matrix[newY][newX] = 4;
             var vrs = new Vorsord(newX, newY, 1)
@@ -49,11 +50,12 @@ class Vorsord extends LivingCreature {
 
     move() {
 
-        var empty = randomItem(this.chooseCell(0));
+        var arr = this.chooseCell(0);
+        var newCell = arr[Math.floor(Math.random() * arr.length)];
         this.energy--;
-        if (empty) {
-            var newX = empty[0];
-            var newY = empty[1];
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
 
             matrix[newY][newX] = 4;
             matrix[this.y][this.x] = 0;
@@ -68,10 +70,13 @@ class Vorsord extends LivingCreature {
 
 
     eat() {
-
+        var arr = this.chooseCell(2);
+        var food = arr[Math.floor(Math.random() * arr.length)];
+        var arr = this.chooseCell(3);
+        var food1 = arr[Math.floor(Math.random() * arr.length)];
 
         if (food) {
-            var food = randomItem(this.chooseCell(2));
+           
             var newX = food[0]
             var newY = food[1]
             matrix[newY][newX] = 4;
@@ -93,7 +98,7 @@ class Vorsord extends LivingCreature {
         }
 
         if (food1) {
-            var food1 = randomItem(this.chooseCell(3));
+            
             var newX = food1[0]
             var newY = food1[1]
             matrix[newY][newX] = 4;
@@ -133,4 +138,3 @@ class Vorsord extends LivingCreature {
 
 
 }
-var randomItem = matrix[Math.floor(Math.random()*matrix.length)];

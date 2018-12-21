@@ -1,47 +1,57 @@
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+app.use(express.static("."));
+app.get('/', function (req, res) {
+    res.redirect('index.html');
+});
+server.listen(3000);
 
-var randomItem = matrix[Math.floor(Math.random()*matrix.length)];
-var matrix = [
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,3, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,5,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,4,0,2,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,1,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
-];
-var Grass = require("/.Grass.js")
-var Xotaker = require("/.Xotaker.js")
-var Gishatich = require("/.Gishatich.js")
-var Vorsord = require("/.Vorsord.js")
-var Gazan = require("/.Gazan.js")
-var n = 20
-var elemm = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 5, 5, 5, 5,]
-for (y = 0; y < n; y++) {
-    matrix.push([])
-    for (x = 0; x < n; x++) {
-        var r = Math.floor(Math.random() * elemm.length);
-        matrix[y].push(elemm[r]);
+
+//matrix = [
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,3, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,5,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,4,0,2,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,1,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+// [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0, 0, 0, 0, 0, 0, 0, 0, 0,],
+//];
+Grass = require("./Grass.js")
+Xotaker = require("./Xotaker.js")
+Gishatich = require("./Gishatich.js")
+Vorsord = require("./Vorsord.js")
+Gazan = require("./Gazan.js")
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+
+}
+function FillMatrix(n, m) {
+    matrix = []
+    for (var i = 0; i < n; i++) {
+        matrix.push([]);
+        for (var j = 0; j < m; j++) {
+            matrix[i].push(Math.round(getRandomArbitrary(0, 5)))
+        }
     }
+    return matrix
 }
 
 
-var gr = new Grass(5, 4, 1);
-var d = gr.chooseCell(1);
-console.log(d);
 
+grassArr = [];
+xotakerArr = [];
+gishatichArr = [];
+vorsordArr = [];
+gazanArr = [];
 
-
-var grassArr = [];
-var xotakerArr = [];
-var gishatichArr = [];
-var vorsordArr = [];
-var gazanArr = [];
 
 
 
@@ -78,21 +88,15 @@ for (var y = 0; y < matrix.length; y++) {
     }
 }
 
-console.log(grassArr);
-console.log(xotakerArr);
-console.log(gishatichArr);
-console.log(vorsordArr);
-console.log(gazanArr);
 
 
 
 
 
-
-setInterval(drawServerayin,200)
+setInterval(drawServerayin, 200)
 function drawServerayin() {
 
-    
+
     for (var i in grassArr) {
 
         grassArr[i].mult();
@@ -123,10 +127,6 @@ function drawServerayin() {
         gazanArr[i].move();
         gazanArr[i].die();
     }
+    io.sockets.emit("matrix", matrix)
 
 }
-
-
-
-
-
